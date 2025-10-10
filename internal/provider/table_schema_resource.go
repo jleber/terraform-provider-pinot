@@ -41,6 +41,7 @@ type dimensionFieldSpec struct {
 	NotNull           basetypes.BoolValue   `tfsdk:"not_null"`
 	SingleValueField  basetypes.BoolValue   `tfsdk:"single_value_field"`
 	TransformFunction basetypes.StringValue `tfsdk:"transform_function"`
+	MaxLength         basetypes.Int64Value  `tfsdk:"max_length"`
 }
 
 type dateTimeFieldSpec struct {
@@ -339,6 +340,7 @@ func toDimensionFieldSpecs(fieldSpecs []dimensionFieldSpec) []model.FieldSpec {
 			NotNull:           fs.NotNull.ValueBoolPointer(),
 			SingleValueField:  fs.SingleValueField.ValueBoolPointer(),
 			TransformFunction: fs.TransformFunction.ValueString(),
+			MaxLength:         fs.MaxLength.ValueInt64(),
 		})
 	}
 	return pinotFieldSpecs
@@ -385,6 +387,9 @@ func setState(state *tableSchemaResourceModel, schema *model.Schema) {
 		}
 		if fs.TransformFunction != "" {
 			dimensionFieldSpec.TransformFunction = basetypes.NewStringValue(fs.TransformFunction)
+		}
+		if fs.MaxLength != 0 {
+			dimensionFieldSpec.MaxLength = basetypes.NewInt64Value(fs.MaxLength)
 		}
 		dimensionFieldSpecs[i] = dimensionFieldSpec
 	}
