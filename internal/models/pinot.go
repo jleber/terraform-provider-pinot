@@ -100,10 +100,10 @@ type FieldIndexBloom struct {
 
 type FieldIndexForward struct {
 	CompressionCodec      types.String `tfsdk:"compressioncodec"`
-	DeriveNumDocsPerChunk types.String `tfsdk:"derivenumdocsperchunk"`
-	RawIndexWriterVersion types.String `tfsdk:"rawindexwriterversion"`
-	TargetDocsPerChunk    types.String `tfsdk:"targetdocsperchunk"`
-	TargetMaxChunkSize    types.String `tfsdk:"targetmaxchunksize"`
+	DeriveNumDocsPerChunk types.Bool   `tfsdk:"derivenumdocsperchunk"`
+	RawIndexWriterVersion types.Int64  `tfsdk:"rawindexwriterversion"`
+	TargetDocsPerChunk    types.Int64  `tfsdk:"targetdocsperchunk"`
+	TargetMaxChunkSize    types.Int64  `tfsdk:"targetmaxchunksize"`
 }
 
 type FieldIndexDictionary struct {

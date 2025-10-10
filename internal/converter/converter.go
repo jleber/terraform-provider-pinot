@@ -538,10 +538,10 @@ func convertFieldConfigList(table *pinot_api.Table) []*models.FieldConfig {
 			if fieldConfig.Indexes.Forward != nil {
 				fc.Indexes.Forward = &models.FieldIndexForward{
 					CompressionCodec:      types.StringValue(fieldConfig.Indexes.Forward.CompressionCodec),
-					DeriveNumDocsPerChunk: types.StringValue(fieldConfig.Indexes.Forward.DeriveNumDocsPerChunk),
-					RawIndexWriterVersion: types.StringValue(fieldConfig.Indexes.Forward.RawIndexWriterVersion),
-					TargetDocsPerChunk:    types.StringValue(fieldConfig.Indexes.Forward.TargetDocsPerChunk),
-					TargetMaxChunkSize:    types.StringValue(fieldConfig.Indexes.Forward.TargetMaxChunkSize),
+					DeriveNumDocsPerChunk: types.BoolPointerValue(fieldConfig.Indexes.Forward.DeriveNumDocsPerChunk),
+					RawIndexWriterVersion: types.Int64Value(fieldConfig.Indexes.Forward.RawIndexWriterVersion),
+					TargetDocsPerChunk:    types.Int64Value(fieldConfig.Indexes.Forward.TargetDocsPerChunk),
+					TargetMaxChunkSize:    types.Int64Value(fieldConfig.Indexes.Forward.TargetMaxChunkSize),
 				}
 			}
 

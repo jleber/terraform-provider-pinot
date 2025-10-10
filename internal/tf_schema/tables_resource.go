@@ -782,19 +782,19 @@ func FieldConfigList() schema.ListNestedAttribute {
 									Description: "compression codec",
 									Optional:    true,
 								},
-								"derivenumdocsperchunk": schema.StringAttribute{
+								"derivenumdocsperchunk": schema.BoolAttribute{
 									Description: "derive num docs per chunk",
 									Optional:    true,
 								},
-								"rawindexwriterversion": schema.StringAttribute{
+								"rawindexwriterversion": schema.Int64Attribute{
 									Description: "raw index writer version",
 									Optional:    true,
 								},
-								"targetdocsperchunk": schema.StringAttribute{
+								"targetdocsperchunk": schema.Int64Attribute{
 									Description: "The target number of docs per chunk",
 									Optional:    true,
 								},
-								"targetmaxchunksize": schema.StringAttribute{
+								"targetmaxchunksize": schema.Int64Attribute{
 									Description: "The target max chunk size",
 									Optional:    true,
 								},
