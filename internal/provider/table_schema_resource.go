@@ -120,6 +120,10 @@ func (t *tableSchemaResource) Schema(_ context.Context, _ resource.SchemaRequest
 							Description: "Transform function for specific field.",
 							Optional:    true,
 						},
+						"max_length": schema.Int64Attribute{
+							Description: "Max length of this column.",
+							Optional:    true,
+						},
 					},
 				},
 			},
