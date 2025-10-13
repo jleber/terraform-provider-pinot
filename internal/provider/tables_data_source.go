@@ -441,6 +441,11 @@ func (d *tablesDataSource) Schema(_ context.Context, _ datasource.SchemaRequest,
 											},
 										},
 									},
+									"properties": schema.MapAttribute{
+										Description: "",
+										Computed:    true,
+										ElementType: types.StringType,
+									},
 									"indexes": schema.ListNestedAttribute{
 										Description: "The indexes of the field.",
 										Computed:    true,

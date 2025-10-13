@@ -742,6 +742,11 @@ func FieldConfigList() schema.ListNestedAttribute {
 						},
 					},
 				},
+				"properties": schema.MapAttribute{
+					Description: "",
+					Optional:    true,
+					ElementType: types.StringType,
+				},
 				"indexes": schema.SingleNestedAttribute{
 					Description: "indexes",
 					Optional:    true,

@@ -518,6 +518,10 @@ func convertFieldConfigList(table *pinot_api.Table) []*models.FieldConfig {
 			}
 		}
 
+		if fieldConfig.Properties != nil {
+			fc.Properties = fieldConfig.Properties
+		}
+
 		if fieldConfig.Indexes != nil {
 			fc.Indexes = &models.FieldIndexes{}
 

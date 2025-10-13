@@ -149,12 +149,13 @@ type FieldIndexTimestamp struct {
 }
 
 type FieldConfig struct {
-	Name            types.String     `tfsdk:"name"`
-	EncodingType    types.String     `tfsdk:"encoding_type"`
-	IndexType       types.String     `tfsdk:"index_type"`
-	IndexTypes      []string         `tfsdk:"index_types"`
-	TimestampConfig *TimestampConfig `tfsdk:"timestamp_config"`
-	Indexes         *FieldIndexes    `tfsdk:"indexes"`
+	Name            types.String      `tfsdk:"name"`
+	EncodingType    types.String      `tfsdk:"encoding_type"`
+	IndexType       types.String      `tfsdk:"index_type"`
+	IndexTypes      []string          `tfsdk:"index_types"`
+	TimestampConfig *TimestampConfig  `tfsdk:"timestamp_config"`
+	Indexes         *FieldIndexes     `tfsdk:"indexes"`
+	Properties      map[string]string `tfsdk:"properties"`
 }
 
 type TableIndexConfig struct {

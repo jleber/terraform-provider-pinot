@@ -158,6 +158,10 @@ func ToFieldConfigList(plan *models.TableResourceModel) []model.FieldConfig {
 			}
 		}
 
+		if fieldConfig.Properties != nil {
+			fc.Properties = fieldConfig.Properties
+		}
+
 		if fieldConfig.Indexes != nil {
 			fc.Indexes = &model.FieldIndexes{}
 
