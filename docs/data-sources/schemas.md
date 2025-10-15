@@ -63,7 +63,7 @@ Optional:
 - `not_null` (Boolean) Whether the dimension is not null.
 - `single_value_field` (Boolean) Whether the dimension is a single value field.
 - `transform_function` (String) Transform function for specific field.
-- `max_length` (String) Transform function for specific field.
+- `max_length` (Int64) Max length of this column.
 
 
 <a id="nestedatt--schemas--metric_field_specs"></a>
