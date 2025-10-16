@@ -23,10 +23,10 @@ func TestAccSchemasResource(t *testing.T) {
 	// fmt.Println(pinot.URI)
 
 	providerConfig := fmt.Sprintf(`
-provider "pinot" {
-	controller_url = "http://%s"
-	auth_token = "YWRtaW46dmVyeXNlY3JldA"
-}
+	provider "pinot" {
+		controller_url = "http://%s"
+		auth_token = "YWRtaW46dmVyeXNlY3JldA"
+	}
 `, pinot.URI)
 
 	resource.Test(t, resource.TestCase{
@@ -67,6 +67,7 @@ provider "pinot" {
 					resource.TestCheckResourceAttr("pinot_schema.block_schema", "date_time_field_specs.0.name", "block_timestamp"),
 					resource.TestCheckResourceAttr("pinot_schema.block_schema", "date_time_field_specs.0.format", "1:MILLISECONDS:EPOCH"),
 					resource.TestCheckResourceAttr("pinot_schema.block_schema", "date_time_field_specs.0.granularity", "1:MILLISECONDS"),
+					resource.TestCheckResourceAttr("pinot_schema.block_schema", "date_time_field_specs.0.not_null", "false"),
 					resource.TestCheckResourceAttr("pinot_schema.block_schema", "dimension_field_specs.0.name", "block_number"),
 					resource.TestCheckResourceAttr("pinot_schema.block_schema", "dimension_field_specs.0.data_type", "INT"),
 					resource.TestCheckResourceAttr("pinot_schema.block_schema", "dimension_field_specs.0.not_null", "true"),
@@ -125,6 +126,7 @@ provider "pinot" {
 					resource.TestCheckResourceAttr("pinot_schema.block_schema", "date_time_field_specs.0.name", "block_timestamp"),
 					resource.TestCheckResourceAttr("pinot_schema.block_schema", "date_time_field_specs.0.format", "1:MILLISECONDS:EPOCH"),
 					resource.TestCheckResourceAttr("pinot_schema.block_schema", "date_time_field_specs.0.granularity", "1:MILLISECONDS"),
+					resource.TestCheckResourceAttr("pinot_schema.block_schema", "date_time_field_specs.0.not_null", "false"),
 					resource.TestCheckResourceAttr("pinot_schema.block_schema", "dimension_field_specs.0.name", "block_number"),
 					resource.TestCheckResourceAttr("pinot_schema.block_schema", "dimension_field_specs.0.data_type", "INT"),
 					resource.TestCheckResourceAttr("pinot_schema.block_schema", "dimension_field_specs.0.not_null", "true"),
