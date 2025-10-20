@@ -100,10 +100,10 @@ type FieldIndexBloom struct {
 
 type FieldIndexForward struct {
 	CompressionCodec      types.String `tfsdk:"compressioncodec"`
-	DeriveNumDocsPerChunk types.String `tfsdk:"derivenumdocsperchunk"`
-	RawIndexWriterVersion types.String `tfsdk:"rawindexwriterversion"`
-	TargetDocsPerChunk    types.String `tfsdk:"targetdocsperchunk"`
-	TargetMaxChunkSize    types.String `tfsdk:"targetmaxchunksize"`
+	DeriveNumDocsPerChunk types.Bool   `tfsdk:"derivenumdocsperchunk"`
+	RawIndexWriterVersion types.Int64  `tfsdk:"rawindexwriterversion"`
+	TargetDocsPerChunk    types.Int64  `tfsdk:"targetdocsperchunk"`
+	TargetMaxChunkSize    types.Int64  `tfsdk:"targetmaxchunksize"`
 }
 
 type FieldIndexDictionary struct {
@@ -149,12 +149,13 @@ type FieldIndexTimestamp struct {
 }
 
 type FieldConfig struct {
-	Name            types.String     `tfsdk:"name"`
-	EncodingType    types.String     `tfsdk:"encoding_type"`
-	IndexType       types.String     `tfsdk:"index_type"`
-	IndexTypes      []string         `tfsdk:"index_types"`
-	TimestampConfig *TimestampConfig `tfsdk:"timestamp_config"`
-	Indexes         *FieldIndexes    `tfsdk:"indexes"`
+	Name            types.String      `tfsdk:"name"`
+	EncodingType    types.String      `tfsdk:"encoding_type"`
+	IndexType       types.String      `tfsdk:"index_type"`
+	IndexTypes      []string          `tfsdk:"index_types"`
+	TimestampConfig *TimestampConfig  `tfsdk:"timestamp_config"`
+	Indexes         *FieldIndexes     `tfsdk:"indexes"`
+	Properties      map[string]string `tfsdk:"properties"`
 }
 
 type TableIndexConfig struct {

@@ -441,6 +441,11 @@ func (d *tablesDataSource) Schema(_ context.Context, _ datasource.SchemaRequest,
 											},
 										},
 									},
+									"properties": schema.MapAttribute{
+										Description: "",
+										Computed:    true,
+										ElementType: types.StringType,
+									},
 									"indexes": schema.ListNestedAttribute{
 										Description: "The indexes of the field.",
 										Computed:    true,
@@ -487,12 +492,20 @@ func (d *tablesDataSource) Schema(_ context.Context, _ datasource.SchemaRequest,
 																Description: "The compression codec of the forward index.",
 																Computed:    true,
 															},
-															"derive_num_docs_per_chunk": schema.StringAttribute{
+															"derive_num_docs_per_chunk": schema.BoolAttribute{
 																Description: "The number of docs per chunk for the forward index.",
 																Computed:    true,
 															},
-															"raw_index_writer_version": schema.StringAttribute{
+															"raw_index_writer_version": schema.Int64Attribute{
 																Description: "The raw index writer version of the forward index.",
+																Computed:    true,
+															},
+															"target_docs_per_chunk": schema.Int64Attribute{
+																Description: "The target number of docs per chunk.",
+																Computed:    true,
+															},
+															"target_max_chunk_size": schema.Int64Attribute{
+																Description: "The target max chunk size.",
 																Computed:    true,
 															},
 														},

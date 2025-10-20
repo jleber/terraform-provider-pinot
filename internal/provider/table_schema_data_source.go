@@ -161,7 +161,12 @@ func (d *schemasDataSource) Schema(_ context.Context, req datasource.SchemaReque
 									"transform_function": schema.StringAttribute{
 										Description: "Transform function for specific field.",
 										Optional:    true,
-									}},
+									},
+									"max_length": schema.Int64Attribute{
+										Description: "Max length of this column.",
+										Optional:    true,
+									},
+								},
 							},
 						},
 						"metric_field_specs": schema.ListNestedAttribute{
