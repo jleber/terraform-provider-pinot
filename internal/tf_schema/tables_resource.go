@@ -212,6 +212,31 @@ func TableIndexConfig() schema.SingleNestedAttribute {
 	}
 }
 
+func DedupConfig() schema.SingleNestedAttribute {
+	return schema.SingleNestedAttribute{
+		Description: "The dedup configuration for the table.",
+		Optional:    true,
+		Attributes: map[string]schema.Attribute{
+			"dedup_enabled": schema.BoolAttribute{
+				Description: "The dedup enable toggle for the table.",
+				Optional:    true,
+			},
+			"hash_function": schema.StringAttribute{
+				Description: "The dedup hash function for the table.",
+				Optional:    true,
+			},
+			"dedup_time_column": schema.StringAttribute{
+				Description: "The dedup time column for the table.",
+				Optional:    true,
+			},
+			"metadata_ttl": schema.Int64Attribute{
+				Description: "The dedup metadata ttl for the table.",
+				Optional:    true,
+			},
+		},
+	}
+}
+
 func UpsertConfig() schema.SingleNestedAttribute {
 	return schema.SingleNestedAttribute{
 		Description: "The upsert configuration for the table.",

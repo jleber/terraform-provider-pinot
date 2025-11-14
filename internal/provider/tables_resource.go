@@ -76,6 +76,7 @@ func (r *tableResource) Schema(_ context.Context, _ resource.SchemaRequest, resp
 			"segments_config":                tf_schema.SegmentsConfig(),
 			"tenants":                        tf_schema.Tenants(),
 			"table_index_config":             tf_schema.TableIndexConfig(),
+			"dedup_config":                   tf_schema.DedupConfig(),
 			"upsert_config":                  tf_schema.UpsertConfig(),
 			"ingestion_config":               tf_schema.IngestionConfig(),
 			"tier_configs":                   tf_schema.TierConfigs(),
