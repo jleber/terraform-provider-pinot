@@ -84,7 +84,7 @@ func ToDedupConfig(stateConfig *models.DedupConfig) *model.DedupConfig {
 		DedupEnabled:    stateConfig.DedupEnabled.ValueBool(),
 		HashFunction:    stateConfig.HashFunction.ValueString(),
 		DedupTimeColumn: stateConfig.DedupTimeColumn.ValueString(),
-		MetadataTTL:     stateConfig.MetadataTTL.ValueInt64(),
+		MetadataTTL:     float64(stateConfig.MetadataTTL.ValueInt64()),
 	}
 
 	return &dedupConfig
