@@ -48,6 +48,11 @@ func SetStateFromTable(ctx context.Context, state *models.TableResourceModel, ta
 		state.Routing = routingConfig
 	}
 
+	// Dedup Config
+	if table.DedupConfig != nil {
+		state.DedupConfig = convertDedupConfig(table)
+	}
+
 	// Upsert Config
 	if table.UpsertConfig != nil {
 		upsertConfig, upsertDiags := convertUpsertConfig(ctx, table)
@@ -442,6 +447,22 @@ func convertRoutingConfig(ctx context.Context, table *pinot_api.Table) (*models.
 	}
 
 	return &routingConfig, resultDiags
+}
+
+func convertDedupConfig(table *pinot_api.Table) *models.DedupConfig {
+
+	if table.DedupConfig == nil {
+		return nil
+	}
+
+	dedupConfig := models.DedupConfig{
+		DedupEnabled:    types.BoolValue(table.DedupConfig.DedupEnabled),
+		HashFunction:    types.StringValue(table.DedupConfig.HashFunction),
+		DedupTimeColumn: types.StringValue(table.DedupConfig.DedupTimeColumn),
+		MetadataTTL:     types.Int64Value(int64(table.DedupConfig.MetadataTTL)),
+	}
+
+	return &dedupConfig
 }
 
 func convertUpsertConfig(ctx context.Context, table *pinot_api.Table) (*models.UpsertConfig, diag.Diagnostics) {

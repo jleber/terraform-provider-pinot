@@ -43,6 +43,10 @@ func ToTable(plan *models.TableResourceModel) (*model.Table, diag.Diagnostics) {
 		table.FieldConfigList = ToFieldConfigList(plan)
 	}
 
+	if plan.DedupConfig != nil {
+		table.DedupConfig = ToDedupConfig(plan.DedupConfig)
+	}
+
 	if plan.UpsertConfig != nil {
 
 		upsertConfig, upsertDiags := ToUpsertConfig(ctx, plan.UpsertConfig)
@@ -72,6 +76,19 @@ func ToTable(plan *models.TableResourceModel) (*model.Table, diag.Diagnostics) {
 	}
 
 	return &table, diags
+}
+
+func ToDedupConfig(stateConfig *models.DedupConfig) *model.DedupConfig {
+
+	dedupConfig := model.DedupConfig{
+		DedupEnabled:    stateConfig.DedupEnabled.ValueBool(),
+		HashFunction:    stateConfig.HashFunction.ValueString(),
+		DedupTimeColumn: stateConfig.DedupTimeColumn.ValueString(),
+		MetadataTTL:     float64(stateConfig.MetadataTTL.ValueInt64()),
+	}
+
+	return &dedupConfig
+
 }
 
 func ToUpsertConfig(ctx context.Context, stateConfig *models.UpsertConfig) (*model.UpsertConfig, diag.Diagnostics) {

@@ -9,6 +9,7 @@ type TableResourceModel struct {
 	SegmentsConfig              *SegmentsConfig              `tfsdk:"segments_config"`
 	TenantsConfig               *TenantsConfig               `tfsdk:"tenants"`
 	TableIndexConfig            *TableIndexConfig            `tfsdk:"table_index_config"`
+	DedupConfig                 *DedupConfig                 `tfsdk:"dedup_config"`
 	UpsertConfig                *UpsertConfig                `tfsdk:"upsert_config"`
 	IngestionConfig             *IngestionConfig             `tfsdk:"ingestion_config"`
 	TierConfigs                 []*TierConfig                `tfsdk:"tier_configs"`
@@ -48,6 +49,13 @@ type SegmentsConfig struct {
 
 type CompletionConfig struct {
 	CompletionMode types.String `tfsdk:"completion_mode"`
+}
+
+type DedupConfig struct {
+	DedupEnabled    types.Bool   `tfsdk:"dedup_enabled"`
+	HashFunction    types.String `tfsdk:"hash_function"`
+	DedupTimeColumn types.String `tfsdk:"dedup_time_column"`
+	MetadataTTL     types.Int64  `tfsdk:"metadata_ttl"`
 }
 
 type UpsertConfig struct {
