@@ -9,6 +9,7 @@ import (
 	"github.com/hashicorp/terraform-plugin-framework/path"
 	"github.com/hashicorp/terraform-plugin-framework/resource"
 	"github.com/hashicorp/terraform-plugin-framework/resource/schema"
+	"github.com/hashicorp/terraform-plugin-framework/resource/schema/booldefault"
 	"github.com/hashicorp/terraform-plugin-framework/types"
 	"github.com/hashicorp/terraform-plugin-framework/types/basetypes"
 	"github.com/hashicorp/terraform-plugin-log/tflog"
@@ -112,6 +113,8 @@ func (t *tableSchemaResource) Schema(_ context.Context, _ resource.SchemaRequest
 						"not_null": schema.BoolAttribute{
 							Description: "Whether the dimension is not null.",
 							Optional:    true,
+							Computed:    true,
+							Default:     booldefault.StaticBool(false),
 						},
 						"single_value_field": schema.BoolAttribute{
 							Description: "Whether the dimension is a single value field.",
@@ -144,6 +147,8 @@ func (t *tableSchemaResource) Schema(_ context.Context, _ resource.SchemaRequest
 						"not_null": schema.BoolAttribute{
 							Description: "Whether the dimension is not null.",
 							Optional:    true,
+							Computed:    true,
+							Default:     booldefault.StaticBool(false),
 						},
 						"transform_function": schema.StringAttribute{
 							Description: "Transform function for specific field.",
@@ -168,6 +173,8 @@ func (t *tableSchemaResource) Schema(_ context.Context, _ resource.SchemaRequest
 						"not_null": schema.BoolAttribute{
 							Description: "Whether the dimension is not null.",
 							Optional:    true,
+							Computed:    true,
+							Default:     booldefault.StaticBool(false),
 						},
 						"format": schema.StringAttribute{
 							Description: "The format of the date time.",
@@ -404,7 +411,7 @@ func setState(state *tableSchemaResourceModel, schema *model.Schema) {
 		dimensionFieldSpec := dimensionFieldSpec{
 			Name:             fs.Name,
 			DataType:         fs.DataType,
-			NotNull:          basetypes.NewBoolPointerValue(fs.NotNull),
+			NotNull:          basetypes.NewBoolValue(fs.NotNull != nil && *fs.NotNull),
 			SingleValueField: basetypes.NewBoolPointerValue(fs.SingleValueField),
 		}
 		if fs.TransformFunction != "" {
@@ -421,7 +428,7 @@ func setState(state *tableSchemaResourceModel, schema *model.Schema) {
 		metricFieldSpec := metricFieldSpec{
 			Name:     fs.Name,
 			DataType: fs.DataType,
-			NotNull:  basetypes.NewBoolPointerValue(fs.NotNull),
+			NotNull:  basetypes.NewBoolValue(fs.NotNull != nil && *fs.NotNull),
 		}
 		if fs.TransformFunction != "" {
 			metricFieldSpec.TransformFunction = basetypes.NewStringValue(fs.TransformFunction)
@@ -436,7 +443,7 @@ func setState(state *tableSchemaResourceModel, schema *model.Schema) {
 			DataType:    fs.DataType,
 			Format:      fs.Format,
 			Granularity: fs.Granularity,
-			NotNull:     basetypes.NewBoolPointerValue(fs.NotNull),
+			NotNull:     basetypes.NewBoolValue(fs.NotNull != nil && *fs.NotNull),
 		}
 		if fs.TransformFunction != "" {
 			dateTimeFieldSpec.TransformFunction = basetypes.NewStringValue(fs.TransformFunction)
